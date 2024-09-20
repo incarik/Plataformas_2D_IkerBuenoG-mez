@@ -24,9 +24,19 @@ public class PlayerConroller : MonoBehaviour
     {
        horizontalInput = Input.GetAxis("Horizontal"); 
 
-       if(Input.GetButtonDown("Jump"))
+       if(horizontalInput < 0)
        {
-         characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            transform.rotation = Quaternion.Euler(0, 180, 0); //sirve para girar al personaje de una manera compleja
+       }
+
+       else if(horizontalInput > 0)
+       {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+       }
+      
+       if(Input.GetButtonDown("Jump") && GroundSensor.isGrounded)
+       {
+         characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
        }
     }
 
