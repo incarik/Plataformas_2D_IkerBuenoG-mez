@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerConroller : MonoBehaviour
 {
     private Rigidbody2D characterRigidbody;
-    [SerializeField]private float characterSpeed = 4.5f;
     private float horizontalInput;
+    [SerializeField]private float characterSpeed = 4.5f;
+    [SerializeField] private float jumpForce = 5;
 
     void Awake()
     {
@@ -16,17 +17,22 @@ public class PlayerConroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //characterRigidbody.AddForce(Vector2.up * jumpForce);
     }
 
     void Update()
     {
        horizontalInput = Input.GetAxis("Horizontal"); 
+
+       if(Input.GetButtonDown("Jump"))
+       {
+         characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+       }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        characterRigidbody.velocity = new Vector2(horizontalInput  * characterSpeed, characterRigidbody.velocity.y) *characterSpeed;
+        characterRigidbody.velocity = new Vector2(horizontalInput  * characterSpeed, characterRigidbody.velocity.y);
     }
 }   
