@@ -61,7 +61,8 @@ public class PlayerConroller : MonoBehaviour
     {
         if(collision.gameObject.layer == 8)
         {
-            characterAnimator.SetBool("IsDeath", true);
+            characterAnimator.SetTrigger("IsDeath");
+            Destroy(gameObject, 1f);
         }
     }
 }   
