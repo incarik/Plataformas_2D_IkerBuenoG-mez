@@ -6,6 +6,7 @@ public class PlayerConroller : MonoBehaviour
 {
     private Rigidbody2D characterRigidbody;
     private float horizontalInput;
+    private bool jumpInput;
     [SerializeField]private float characterSpeed = 4.5f;
     [SerializeField] private float jumpForce = 5;
 
@@ -34,7 +35,7 @@ public class PlayerConroller : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
        }
       
-       if(Input.GetButtonDown("Jump") && GroundSensor.isGrounded)
+       if(Input.GetButtonDown("Jump") && GroundSensor.isGrounded == true)
        {
          characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
        }
