@@ -9,7 +9,7 @@ public class PlayerConroller : MonoBehaviour
     private bool jumpInput;
     [SerializeField]private float characterSpeed = 4.5f;
     [SerializeField] private float jumpForce = 5;
-    private Animator characterAnimator;
+    public static Animator characterAnimator;
 
     void Awake()
     {
@@ -39,7 +39,7 @@ public class PlayerConroller : MonoBehaviour
         characterAnimator.SetBool("IsRunning", true);
        }
 
-       else if(horizontalInput == 0)
+       else
        {
         characterAnimator.SetBool("IsRunning", false);
        }
