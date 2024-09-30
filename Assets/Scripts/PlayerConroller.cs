@@ -28,14 +28,13 @@ public class PlayerConroller : MonoBehaviour
     void Update()
     {
         Moviment();
+
         if(Input.GetButtonDown("Jump") && GroundSensor.isGrounded && !isAttacking)
        {
          Jump();
         }
-        
       
-      
-       if(Input.GetButtonDown("Fire1") && GroundSensor.isGrounded == true)
+       if(Input.GetButtonDown("Fire1") && GroundSensor.isGrounded && !isAttacking)
        {
          Attack();
        }
@@ -80,7 +79,7 @@ public class PlayerConroller : MonoBehaviour
     {
         isAttacking = true;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
         isAttacking = false;
     }
