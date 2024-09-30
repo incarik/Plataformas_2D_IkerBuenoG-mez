@@ -11,6 +11,7 @@ public class PlayerConroller : MonoBehaviour
     [SerializeField] private float jumpForce = 5;
     public static Animator characterAnimator;
     [SerializeField] private int healthPoints = 5;
+    private bool isAttacking;
 
     void Awake()
     {
@@ -27,7 +28,11 @@ public class PlayerConroller : MonoBehaviour
     void Update()
     {
         Moviment();
-        Jump();
+        if(Input.GetButtonDown("Jump") && GroundSensor.isGrounded && !isAttacking)
+       {
+         Jump();
+        }
+        
       
       
        if(Input.GetButtonDown("Fire1") && GroundSensor.isGrounded == true)
@@ -67,16 +72,25 @@ public class PlayerConroller : MonoBehaviour
 
     void Attack()
     {
+        StartCoroutine(AttackAnimation());
         characterAnimator.SetTrigger("Attack");
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        isAttacking = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        isAttacking = false;
     }
 
     void Jump()
     {
-         if(Input.GetButtonDown("Jump") && GroundSensor.isGrounded == true)
-       {
-         characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
-         characterAnimator.SetBool("IsJumping", true);
-        }
+        
+     characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
+     characterAnimator.SetBool("IsJumping", true);
+        
     }
 
     void TakeDamage()
