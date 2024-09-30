@@ -61,11 +61,15 @@ public class PlayerConroller : MonoBehaviour
     void TakeDamage()
         {
             healthPoints--;
-            characterAnimator.SetTrigger("IsHurt");
-            
+                
             if(healthPoints <= 0)
             {
                 Die();
+            }
+
+            else
+            {
+                characterAnimator.SetTrigger("IsHurt");
             }
         }
     
