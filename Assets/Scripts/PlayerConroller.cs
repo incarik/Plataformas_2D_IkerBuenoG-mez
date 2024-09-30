@@ -63,7 +63,7 @@ public class PlayerConroller : MonoBehaviour
             healthPoints--;
             characterAnimator.SetTrigger("IsHurt");
             
-            if(healthPoints == 0)
+            if(healthPoints <= 0)
             {
                 Die();
             }
@@ -71,7 +71,7 @@ public class PlayerConroller : MonoBehaviour
     
     void Die()
     {
-        characterAnimator.SetBool("IsDeath", true);
+        characterAnimator.SetTrigger("IsDeath");
         Destroy(gameObject, 1f);
     }
 
